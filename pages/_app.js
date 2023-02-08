@@ -1,11 +1,12 @@
-import { ProductsContextProvier } from '@/components/ProductsContext'
-import '@/styles/globals.css'
+import '../styles/globals.css'
+import {ProductsContextProvider} from "../components/ProductsContext";
 
-export default function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   return (
-    <ProductsContextProvier>
+    <ProductsContextProvider>
       <Component {...pageProps} />
-    </ProductsContextProvier>
-  )
-  return <Component {...pageProps} />
+    </ProductsContextProvider>
+  );
 }
+
+export default MyApp

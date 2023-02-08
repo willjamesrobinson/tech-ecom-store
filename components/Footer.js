@@ -3,7 +3,6 @@ import {useRouter} from "next/router";
 import { useContext } from "react";
 import { ProductsContext } from "./ProductsContext";
 
-
 export default function Footer() {
     const router = useRouter();
     const path = router.pathname;

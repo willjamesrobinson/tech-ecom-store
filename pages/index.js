@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import {initMongoose} from "../lib/mongoose";
 import {findAllProducts} from "./api/products";
-import Footer from "@/components/Footer";
 import Layout from "@/components/Layout";
+
 
 export default function Home({products}) {
   const [phrase, setPhrase] = useState('');
@@ -27,23 +27,18 @@ export default function Home({products}) {
         {categoriesNames.map(categoryName => (
           <div key={categoryName}>
             {products.find(p => p.category === categoryName) && (
-             
               <div>
                 <h2 className="text-2xl capitalize">{categoryName}</h2>
-                
                 <div className="flex -mx-5 overflow-x-scroll snap-start scrollbar-hide">
                   {products.filter(p => p.category === categoryName).map(productInfo => (
-                
-                <div key={productInfo._id} className="px-5">
-                <Product {...productInfo} />
-                </div>
-                
-                ))}
+                    <div key={productInfo._id} className="px-5">
+                      <Product {...productInfo} />
+                    </div>
+                  ))}
                 </div>
               </div>
               )}
-            
-          </div>
+            </div>
           ))}
       </div>
 
