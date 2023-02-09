@@ -71,10 +71,10 @@ return (
         </div>
       )})}
       <div className="mt-4">
-        <input value={address} onChange={e => setAddress(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Street address, number"></input>
-        <input value={city} onChange={e => setCity(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="City and postal code"></input>
-        <input value={name} onChange={e => setName(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Name"></input>
-        <input value={email} onChange={e => setEmail(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="email" placeholder="Email address"></input>
+        <input name="address" value={address} onChange={e => setAddress(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Street address, number"></input>
+        <input name="city" value={city} onChange={e => setCity(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="City and postal code"></input>
+        <input name="name" value={name} onChange={e => setName(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Name"></input>
+        <input name="email" value={email} onChange={e => setEmail(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="email" placeholder="Email address"></input>
       </div>
 
       <div className="mt-4">
@@ -93,8 +93,12 @@ return (
           <h3 className="font-bold">${total}</h3>
         </div>
       </div>
+      <form action="/api/checkout" method="POST">
+        <input type="hidden" name="products" value={selectedProducts.join(',')} />
+        <button type="submit" className="bg-emerald-500 p-5 text-white w-full py-2 rounded-xl font-bold my-4 shadow-emerald-300 shadow-lg">Go to checkout</button>
+      </form>
 
-      <button className="bg-emerald-500 p-5 text-white w-full py-2 rounded-xl font-bold my-4 shadow-emerald-300 shadow-lg">Go to checkout</button>
+      
 
       </Layout>
     );
