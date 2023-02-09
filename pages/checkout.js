@@ -29,6 +29,17 @@ export default function CheckoutPage() {
           });
         }
       }
+
+      const deliveryPrice = 5;
+      let subtotal = 0;
+      if (selectedProducts?.length) {
+        for (let id of selectedProducts) {
+          const price = productsInfos.find(p => p._id === id)?.price || 0;
+          subtotal += price;
+        }
+      }
+
+      const total = subtotal + deliveryPrice;
   
 return (
     <Layout>
@@ -59,12 +70,32 @@ return (
           </div>
         </div>
       )})}
-      <div>
-        <input value={address} onChange={e => setAddress(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Street adress, number"></input>
+      <div className="mt-4">
+        <input value={address} onChange={e => setAddress(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Street address, number"></input>
         <input value={city} onChange={e => setCity(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="City and postal code"></input>
         <input value={name} onChange={e => setName(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Name"></input>
         <input value={email} onChange={e => setEmail(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="email" placeholder="Email address"></input>
       </div>
+
+      <div className="mt-4">
+        <div className="flex my-3">
+          <h3 className="grow font-bold text-gray-400">Items:</h3>
+          <h3 className="font-bold">${subtotal}</h3>
+        </div>
+
+        <div className="flex my-3">
+          <h3 className="grow font-bold text-gray-400">Shipping:</h3>
+          <h3 className="font-bold">${deliveryPrice}</h3>
+        </div>
+
+        <div className="flex my-3 border-t border-dashed border-emerald-500">
+          <h3 className="grow font-bold text-gray-400">Subtotal:</h3>
+          <h3 className="font-bold">${total}</h3>
+        </div>
+      </div>
+
+      <button className="bg-emerald-500 p-5 text-white w-full py-2 rounded-xl font-bold my-4 shadow-emerald-300 shadow-lg">Go to checkout</button>
+
       </Layout>
     );
 }
