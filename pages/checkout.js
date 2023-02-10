@@ -60,43 +60,49 @@ return (
             <div className="flex mt-1">
               <div className="grow font-bold">${productInfo.price}</div>
               <div>
-                <button onClick={() => lessOfThisProduct(productInfo._id)} className="border border-emerald-500 px-2 rounded-lg text-emerald-500">-</button>
+                <button onClick={() => lessOfThisProduct(productInfo._id)} className="border border-emerald-500 hover:bg-gray-200 px-2 rounded-lg text-emerald-500">-</button>
                 <span className="px-2">
                   {selectedProducts.filter(id => id === productInfo._id).length}
                 </span>
-                <button onClick={() => moreOfThisProduct(productInfo._id)} className="bg-emerald-500 px-2 rounded-lg text-white">+</button>
+                <button onClick={() => moreOfThisProduct(productInfo._id)} className="bg-emerald-500 px-2 hover:bg-emerald-700 rounded-lg text-white">+</button>
               </div>
             </div>
           </div>
         </div>
       )})}
+      <div className="flex justify-center">
       <div className="mt-4 w-6/12">
         <input name="address" value={address} onChange={e => setAddress(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Street address, number"></input>
         <input name="city" value={city} onChange={e => setCity(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="City and postal code"></input>
         <input name="name" value={name} onChange={e => setName(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Name"></input>
         <input name="email" value={email} onChange={e => setEmail(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="email" placeholder="Email address"></input>
       </div>
+      </div>
 
-      <div className="mt-4">
-        <div className="flex my-3">
-          <h3 className="grow font-bold text-gray-400">Items:</h3>
-          <h3 className="font-bold">${subtotal}</h3>
-        </div>
+      <div className="flex justify-center">
+        <div className="w-6/12">
+          <div className="mt-4">
+            <div className="flex my-3">
+              <h3 className="grow font-bold text-gray-400">Items:</h3>
+              <h3 className="font-bold">${subtotal}</h3>
+            </div>
 
-        <div className="flex my-3">
-          <h3 className="grow font-bold text-gray-400">Shipping:</h3>
-          <h3 className="font-bold">${deliveryPrice}</h3>
-        </div>
+            <div className="flex my-3">
+              <h3 className="grow font-bold text-gray-400">Shipping:</h3>
+              <h3 className="font-bold">${deliveryPrice}</h3>
+            </div>
 
-        <div className="flex my-3 border-t border-dashed border-emerald-500">
-          <h3 className="grow font-bold text-gray-400">Subtotal:</h3>
-          <h3 className="font-bold">${total}</h3>
+            <div className="flex my-3 border-t border-dashed border-emerald-500">
+              <h3 className="grow font-bold text-gray-400">Subtotal:</h3>
+              <h3 className="font-bold">${total}</h3>
+            </div>
+          </div>
+          <form action="/api/checkout" method="POST">
+            <input type="hidden" name="products" value={selectedProducts.join(',')} />
+            <button type="submit" className="bg-emerald-500 p-5 text-white w-full py-2 rounded-xl font-bold my-4 shadow-emerald-300 shadow-lg">Go to checkout</button>
+          </form>
         </div>
       </div>
-      <form action="/api/checkout" method="POST">
-        <input type="hidden" name="products" value={selectedProducts.join(',')} />
-        <button type="submit" className="bg-emerald-500 p-5 text-white w-full py-2 rounded-xl font-bold my-4 shadow-emerald-300 shadow-lg">Go to checkout</button>
-      </form>
 
       
 
