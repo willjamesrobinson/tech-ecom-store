@@ -16,19 +16,22 @@ export default function Home({products}) {
 
   return (
     <Layout>
+      <div className="flex justify-center">
       <input 
         value ={phrase} 
         onChange={e => setPhrase(e.target.value)} 
         type="text" 
         placeholder="Search for Products" 
-        className="bg-gray-100 w-full py-2 px-4 rounded-xl"
+        className="bg-gray-100 w-6/12 py-2 px-4 rounded-xl"
       />
-      <div>
+      </div>
+      <div className="mt-4">
         {categoriesNames.map(categoryName => (
           <div key={categoryName}>
+            <h2 className="text-2xl capitalize text-center mb-4 mt-4 text-emerald-700 font-bold">{categoryName}</h2>
             {products.find(p => p.category === categoryName) && (
-              <div>
-                <h2 className="text-2xl capitalize">{categoryName}</h2>
+              <div  className="flex justify-center">
+                
                 <div className="flex -mx-5 overflow-x-scroll snap-start scrollbar-hide">
                   {products.filter(p => p.category === categoryName).map(productInfo => (
                     <div key={productInfo._id} className="px-5">

@@ -50,7 +50,7 @@ return (
         const amount = selectedProducts.filter(id => id === productInfo._id).length;
         if (amount === 0) return;
         return (
-        <div className="flex mb-5 items-center" key={productInfo._id}>
+        <div className="flex mb-5 items-center justify-center" key={productInfo._id}>
           <div className="bg-gray-100 p-3 rounded-xl shrink-0" style={{boxShadow:'inset 1px 0px 10px 10px rgba(0,0,0,0.1)'}}>
             <img className="w-24" src={productInfo.picture} alt=""/>
           </div>
@@ -70,7 +70,7 @@ return (
           </div>
         </div>
       )})}
-      <div className="mt-4">
+      <div className="mt-4 w-6/12">
         <input name="address" value={address} onChange={e => setAddress(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Street address, number"></input>
         <input name="city" value={city} onChange={e => setCity(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="City and postal code"></input>
         <input name="name" value={name} onChange={e => setName(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Name"></input>
